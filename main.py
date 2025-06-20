@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 from llm import talk
+from fastapi.middleware.cors import CORSMiddleware
 
 model = joblib.load("loan_ensemble_model.pkl")
 
@@ -114,6 +115,14 @@ app = FastAPI(
     title="Loan Approval Prediction API",
     version="1.2",
     description="Predicts loan approval and uses LLM to analyze the bank statement.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
