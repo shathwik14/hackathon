@@ -5,3 +5,4 @@ pandas
 pydantic
 groq
 python-dotenv
+scikit-learn
